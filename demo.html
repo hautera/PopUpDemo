@@ -1,0 +1,65 @@
+<!doctype HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Pop up Demo</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+
+	</head>
+	<style>
+		.overlay{
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.7);
+			transition: opacity 500ms;
+		}
+
+		.tooltip-text{
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			margin:auto;
+			z-index: 1;
+			background-color: #fff;
+			color: #000;
+			border-radius: 5%;
+			padding: 5px;
+		}
+
+		.hidden{
+			display: none;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<tooltip-demo></tooltip-demo>
+			<tooltip-demo></tooltip-demo>
+		</div>
+
+	</body>
+
+	<script>
+		Vue.component('tooltip-demo', {
+			data: function() {
+				return {
+					shown: false,
+				};
+			},
+			template: "<div class='tooltip' @click='toggle_tooltip'><h2>Click me</h2><div class='overlay' :class='{hidden:!shown}'><p class='tooltip-text' :class='{hidden:!shown}'>No depending be convinced in unfeeling he. Excellence she unaffected and too sentiments her. Rooms he doors there ye aware in by shall. Education remainder in so cordially. His remainder and own dejection daughters sportsmen. Is easy took he shed to kind.</p> </div></div>",
+			methods: {
+				toggle_tooltip: function(){
+					this.shown = !this.shown;
+				},
+			},
+		});
+
+		let app = new Vue({
+			el: "#app"
+		});
+	</script>
+</html>
